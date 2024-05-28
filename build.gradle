@@ -53,7 +53,6 @@ publishing {
             groupId = 'junio2022.'
             artifactId = 'javi1999'
             version = '0.1'
-
             from components.java
         }
        
