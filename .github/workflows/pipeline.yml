@@ -37,7 +37,7 @@ jobs:
    - name: Probando el codigo
      run: |
           chmod +x gradlew
-          ./gradlew testClasses
+          ./gradlew test
           echo "usuv"
      
    
