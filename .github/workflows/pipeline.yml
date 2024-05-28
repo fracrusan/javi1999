@@ -2,7 +2,7 @@ name: Flujo de trabajo para ejecutar los test
 on:
   workflow_dispatch:
   push:
-    branches: [ desarrollo ]
+    branches: [ arreglos ]
 
 jobs:
   Build:
