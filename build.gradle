@@ -7,7 +7,8 @@
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
-    application
+    id 'java'
+    id 'maven-publish'
 }
 
 repositories {
@@ -32,12 +33,37 @@ java {
     }
 }
 
-application {
-    // Define the main class for the application.
-    mainClass = "org.example.App"
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/fracrusan/javi1999")         
+            credentials {
+            //las propiedades gpr.user y gpr.key est�n configuradas en gradle.properties en el raiz del proyecto, y se a�ade a .gitignore para que no se suban
+            //O bien configuro las variables de entorno GITHUB_LOGIN y GITHUB_PACKAGES
+                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_LOGIN")
+                password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_PACKAGES")
+                }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+         //Del tutorial https://docs.gradle.org/current/userguide/publishing_maven.html#publishing_maven
+        
+            groupId = 'junio2022.'
+            artifactId = 'javi1999'
+            version = '0.0'
+
+            from components.java
+        }
+       
+    }
 }
 
-tasks.named<Test>("test") {
-    // Use JUnit Platform for unit tests.
-    useJUnitPlatform()
+
+test {
+	useJUnitPlatform()
+	testLogging {
+		events "passed", "skipped", "failed"
+	}
 }
