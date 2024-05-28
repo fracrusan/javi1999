@@ -2,7 +2,7 @@ package junio2022;
  
 import org.junit.jupiter.api.Test;
 
-import junio2022.FirstDayAtSchool;
+
 
 import static org.junit.jupiter.api.Assertions.*;
  
